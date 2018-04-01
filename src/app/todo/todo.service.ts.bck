@@ -1,0 +1,78 @@
+import { Injectable } from '@angular/core';
+import { Http ,Headers,RequestOptions,URLSearchParams }       from '@angular/http';
+import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Rx';
+import {Todo} from './todo';
+import { environment } from '../../environments/environment.prod';
+const BACKEND_URL = environment.backendUrl;
+ const headers = new Headers();
+        headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Access-Control-Allow-Origin', '*');
+@Injectable()
+export class TodoService{
+  //private BACKEND_URL="http://localhost:8081/todolist";
+todolist:any[];
+todo:Todo;
+  constructor(private _http:Http){
+
+  }
+  getTodoList(): Observable<any>{
+    return this._http.get(BACKEND_URL+'/todos',{headers: headers})
+    .map(res=>res.json());
+  }
+
+  addTodo(todo):Observable<any>{
+    console.log(todo);
+      let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+
+//    return this._http.post(BACKEND_URL+'/todos',JSON.stringify(todo),options).map(res=>
+//    {res.json()
+//    console.log('success')});
+//  return this._http.post(this._url,JSON.stringify(user)).map(res=>res.json());
+      return  this._http.post(BACKEND_URL+'/addtodo',JSON.stringify(todo),options).map(res=>
+        //  this.getTodoList();
+        res.json());
+      // console.log(  res.json());
+      //     console.log(todo);
+      //   },err=>{
+      //     console.log(err);
+      //   })
+      //.map(res=>res.json());
+    //  return this.todo;
+  }
+markComplete(todo,flag){
+  //console.log('user'+user);
+  console.log(todo.id);
+  let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: cpHeaders });
+      let params: URLSearchParams = new URLSearchParams();
+
+params.set('id', todo.id);
+params.set('flag',flag);
+options.params = params;
+return this._http.delete(BACKEND_URL+'/mark',options).subscribe(res=>{
+//  this.getTodoList();
+  console.log(res);
+},err=>{
+  console.log(err);
+})
+}
+
+deleteTodoById(todoId){
+    console.log(todoId);
+    let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        let params: URLSearchParams = new URLSearchParams();
+params.set('id', todoId);
+options.params = params;
+  return this._http.delete(BACKEND_URL+'/deletetodos',options).subscribe(res=>{
+  //  this.getTodoList();
+    console.log(res);
+  },err=>{
+    console.log(err);
+  })
+}
+
+}

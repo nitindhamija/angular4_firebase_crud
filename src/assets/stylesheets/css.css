@@ -1,0 +1,88 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v13/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v13/wkfQbvfT_02e2IWO3yYueQ.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v13/oUan5VrEkpzIazlUe5ieaA.woff) format('woff');
+}
+#footer {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+}
+
+#footer:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+
+#filters li {
+	display: inline;
+}
+
+#filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+#filters li a.selected,
+#filters li a:hover {
+	border-color: rgba(175, 47, 47, 0.1);
+}
+
+#filters li a.selected {
+	border-color: rgba(175, 47, 47, 0.2);
+}
+
+#clear-completed,
+html #clear-completed:active {
+	float: right;
+	position: relative;
+	line-height: 20px;
+	text-decoration: none;
+	cursor: pointer;
+	position: relative;
+}
+
+#clear-completed:hover {
+	text-decoration: underline;
+}
+
+.todolist tr { cursor: default; }
+  .todolist tr:hover { background: #cdc9c9; }
+  .childPane{background: #cdc9c9;}
+  .list-group-item.active,
+  .list-group-item.active:hover,
+  .list-group-item.active:focus {
+      background-color: #ecf0f1;
+      border-color: #ecf0f1;
+      color: #2c3e50;
+  }

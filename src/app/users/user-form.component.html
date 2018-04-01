@@ -1,0 +1,99 @@
+<h1>{{ title }}</h1>
+<div class="container">
+  <div [hidden]="submitted">
+
+    <form [formGroup]="userForm" (ngSubmit)="save()" >
+       <fieldset>
+         <legend>
+           User
+         </legend>
+      <div class="form-group">
+        <label for="name">Name</label>
+
+        <input [(ngModel)]="user.name" type="text" id="name" class="form-control"
+               formControlName="name" required >
+
+        <div *ngIf="formErrors.name" class="alert alert-danger">
+          {{ formErrors.name }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input [(ngModel)]="user.email" type="text" id="email" class="form-control"
+            formControlName="email"  >
+            <div *ngIf="formErrors.email" class="alert alert-danger">
+              {{ formErrors.email }}
+            </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+
+        <input [(ngModel)]="user.phone" type="text" id="phone" class="form-control"
+               formControlName="phone" required >
+
+        <div *ngIf="formErrors.phone" class="alert alert-danger">
+          {{ formErrors.phone }}
+        </div>
+      </div>
+ </fieldset>
+
+ <fieldset>
+   <legend>
+     Address
+   </legend>
+ <div formGroupName="address" class="form-group" >
+  <label for="Street">Street</label>
+
+  <input [(ngModel)]="user.address.street" type="text" id="address.street" class="form-control"
+         formControlName="street"  required>
+         <div *ngIf="formErrors.address.street" class="alert alert-danger">
+           {{ formErrors.address.street }}
+         </div>
+
+
+
+
+  <label for="suite">Suite</label>
+  <input [(ngModel)]="user.address.suite" type="text" id="suite" class="form-control"
+      formControlName="suite"  >
+
+
+
+  <label for="city">City</label>
+
+  <input [(ngModel)]="user.address.city" type="text" id="city" class="form-control"
+         formControlName="city"  required>
+
+  <div *ngIf="formErrors.address.city" class="alert alert-danger">
+    {{ formErrors.address.city }}
+  </div>
+
+
+  <label for="zipcode">Zip Code</label>
+
+  <input [(ngModel)]="user.address.zipcode" type="text" id="zipcode" class="form-control"
+         formControlName="zipcode" required >
+
+  <div *ngIf="formErrors.address.zipcode" class="alert alert-danger">
+    {{ formErrors.address.zipcode }}
+  </div>
+ </div>
+ </fieldset>
+
+      <button type="submit" class="btn btn-default"
+             [disabled]="! userForm.valid">Submit</button>
+      <!-- <button type="button" class="btn btn-default"
+             (click)="addUser()">New User</button> -->
+    </form>
+  </div>
+
+
+</div>
+
+
+<!--
+Copyright 2017 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
